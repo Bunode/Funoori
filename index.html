@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funoori - 首页</title>
+    <style>
+        /* --- 5.1 修复版：修复背景显示，还原绚丽效果 --- */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', "PingFang SC", "Microsoft YaHei", sans-serif; 
+            line-height: 1.8; 
+            color: #2c3e50; 
+            background-color: #fff;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        header { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px);
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        
+        .logo { font-size: 24px; font-weight: 700; color: #000; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: #333; }
+        .nav-links a:hover { color: #000; }
+
+        /* --- 核心修改区域 Start --- */
+        .hero { 
+            /* 这里是关键修改！
+               换成了一张绚丽的蓝紫橙渐变流体图，还原设计图效果。
+            */
+            background: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1920&q=80');
+            
+            background-size: cover; 
+            background-position: center; 
+            height: 95vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; /* 居中对齐 */
+            position: relative;
+        }
+
+        /* 这是一个半透明的遮罩层，防止背景颜色太深影响文字 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.1); /* 淡淡的阴影 */
+            z-index: 1;
+        }
+
+        .hero-content { 
+            background: #fff;       /* 纯白背景 */
+            padding: 70px 60px;     /* 加大内边距，让盒子更大气 */
+            max-width: 700px;       
+            width: 90%;             
+            text-align: center;     
+            /* 增加一个明显的阴影，让盒子从背景中“跳”出来 */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+            position: relative; 
+            z-index: 2; /* 确保在遮罩层上面 */
+        }
+        /* --- 核心修改区域 End --- */
+        
+        .hero h1 { 
+            font-size: 46px; 
+            line-height: 1.3; 
+            margin-bottom: 24px; 
+            font-weight: 400; 
+            color: #222;
+            letter-spacing: -1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: inline-block;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        .hero p { 
+            font-size: 16px; 
+            margin-bottom: 40px; 
+            color: #555; 
+            max-width: 500px; 
+            margin-left: auto; margin-right: auto;
+        }
+        
+        .btn { 
+            padding: 16px 45px; 
+            background: #000; 
+            color: #fff; 
+            font-size: 14px; 
+            letter-spacing: 1px;
+            transition: 0.3s; 
+            border: 1px solid #000;
+            display: inline-block;
+        }
+        .btn:hover { background: #333; transform: translateY(-2px); }
+
+        /* 核心业务 */
+        .section { padding: 120px 0; }
+        .section-header { margin-bottom: 80px; text-align: center; }
+        .section-header h2 { font-size: 32px; font-weight: 400; margin-bottom: 15px; }
+        .section-header .line { width: 40px; height: 2px; background: #000; margin: 0 auto; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        
+        .service-card { 
+            background: #fff; 
+            padding: 40px 30px; 
+            border: 1px solid #f0f0f0;
+            transition: 0.4s; 
+            position: relative;
+        }
+        .service-card:hover { 
+            border-color: #aaa; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            transform: translateY(-5px); 
+        }
+        
+        .service-num { 
+            font-size: 14px; font-weight: bold; color: #ccc; 
+            margin-bottom: 20px; display: block;
+        }
+        .service-card h3 { margin-bottom: 15px; font-size: 18px; font-weight: 600; }
+        .service-card p { font-size: 14px; color: #777; line-height: 1.6; }
+
+        /* 关于我们 */
+        .about { background: #fafafa; }
+        .about-content { display: flex; align-items: center; gap: 80px; }
+        
+        .about-img { 
+            flex: 1; 
+            height: 550px; 
+            background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80') center/cover;
+            position: relative;
+            box-shadow: 20px 20px 0px #e0e0e0;
+        }
+
+        .about-text { flex: 1; }
+        .about-text h3 { font-size: 26px; margin-bottom: 30px; font-weight: 400; }
+        .about-text p { margin-bottom: 20px; color: #666; font-size: 15px; text-align: justify; }
+
+        /* 页脚 */
+        footer { background: #1a1a1a; color: #aaa; padding: 80px 0; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-logo { font-size: 24px; font-weight: bold; color: #fff; margin-bottom: 20px; display: block;}
+        .footer-info p { font-size: 14px; margin-bottom: 12px; color: #888; }
+        .footer-right p { font-size: 12px; opacity: 0.5; text-align: right; }
+
+        @media (max-width: 768px) {
+            .hero { height: auto; padding: 120px 0 80px; }
+            .hero h1 { font-size: 36px; }
+            .hero-content { padding: 40px 30px; width: 95%; }
+            .about-content { flex-direction: column; }
+            .about-img { width: 100%; height: 300px; box-shadow: none; margin-bottom: 30px; }
+            .nav-links { display: none; }
+            .footer-right p { text-align: left; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">Funoori</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#services">解决方案</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">ART & TECHNOLOGY</span>
+            <h1>重塑空间与<br>感知的边界</h1> 
+            <p>Funoori 致力于以创新技术驱动当代艺术收藏，<br>并为公共美学空间提供数字化介入方案。</p>
+            <br>
+            <a href="#contact" class="btn">探索解决方案</a>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术与艺术的融合</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-num">01 /</span>
+                    <h3>数字化艺术资产配置</h3>
+                    <p>依托大数据评估模型，为机构与个人藏家提供精准的当代艺术品资产配置与交易技术支持。</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">02 /</span>
+                    <h3>艺术咨询技术服务</h3>
+                    <p>利用 AR/VR 可视化技术，提供沉浸式的艺术陈列模拟咨询，让决策更具前瞻性。</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">03 /</span>
+                    <h3>公共艺术智能介入</h3>
+                    <p>针对城市商业空间，提供从算法生成艺术到智能互动装置的整体公共艺术设计方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container about-content">
+            <div class="about-img">
+                </div>
+            <div class="about-text">
+                <h3>Funoori · 北京</h3>
+                <p>Funoori 是一家立足于北京朝阳的艺术科技公司。我们不只是一家咨询机构，更是一个将科技逻辑注入美学产业的创新实验室。</p>
+                <p>在这个数字化重塑一切的时代，我们试图打破传统画廊的物理边界。通过技术手段，我们链接全球当代艺术资源，并以理性的科技视角，为城市公共空间与私人收藏领域提供最具生命力的美学方案。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <span class="footer-logo">Funoori</span>
+                <div class="footer-info">
+                    <p>北京市朝阳区</p>
+                    <p>info@funoori.com</p>
+                    <p>+86 010-0000 0000</p>
+                </div>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2025 Funoori Technology Co., Ltd. <br>All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
