@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funoori - 首页</title>
     <style>
-        /* --- 5.1 修复版：修复背景显示，还原绚丽效果 --- */
+        /* --- 6.0 最终上线版：已关联本地图片 --- */
         
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
@@ -38,11 +38,9 @@
         .nav-links a { font-size: 14px; font-weight: 500; color: #333; }
         .nav-links a:hover { color: #000; }
 
-        /* --- 核心修改区域 Start --- */
+        /* --- 修改点 1：首屏大图 --- */
         .hero { 
-            /* 这里是关键修改！
-               换成了一张绚丽的蓝紫橙渐变流体图，还原设计图效果。
-            */
+            /* 已修改为读取你上传到 images 文件夹下的 main.jpg */
             background: url('images/main.jpg');
             
             background-size: cover; 
@@ -50,31 +48,28 @@
             height: 95vh; 
             display: flex; 
             align-items: center; 
-            justify-content: center; /* 居中对齐 */
+            justify-content: center; 
             position: relative;
         }
 
-        /* 这是一个半透明的遮罩层，防止背景颜色太深影响文字 */
         .hero::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.1); /* 淡淡的阴影 */
+            background: rgba(0,0,0,0.1); 
             z-index: 1;
         }
 
         .hero-content { 
-            background: #fff;       /* 纯白背景 */
-            padding: 70px 60px;     /* 加大内边距，让盒子更大气 */
+            background: #fff;       
+            padding: 70px 60px;     
             max-width: 700px;       
             width: 90%;             
             text-align: center;     
-            /* 增加一个明显的阴影，让盒子从背景中“跳”出来 */
             box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
             position: relative; 
-            z-index: 2; /* 确保在遮罩层上面 */
+            z-index: 2; 
         }
-        /* --- 核心修改区域 End --- */
         
         .hero h1 { 
             font-size: 46px; 
@@ -148,9 +143,11 @@
         .about { background: #fafafa; }
         .about-content { display: flex; align-items: center; gap: 80px; }
         
+        /* --- 修改点 2：关于我们插图 --- */
         .about-img { 
             flex: 1; 
             height: 550px; 
+            /* 已修改为读取你上传到 images 文件夹下的 about.jpg */
             background: url('images/about.jpg') center/cover;
             position: relative;
             box-shadow: 20px 20px 0px #e0e0e0;
@@ -236,7 +233,7 @@
             <div class="about-img">
                 </div>
             <div class="about-text">
-                <h3>Funoori</h3>
+                <h3>Funoori · 北京</h3>
                 <p>Funoori 是一家艺术科技公司。我们不只是一家咨询机构，更是一个将科技逻辑注入美学产业的创新实验室。</p>
                 <p>在这个数字化重塑一切的时代，我们试图打破传统画廊的物理边界。通过技术手段，我们链接全球当代艺术资源，并以理性的科技视角，为城市公共空间与私人收藏领域提供最具生命力的美学方案。</p>
             </div>
